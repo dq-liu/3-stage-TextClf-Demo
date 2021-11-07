@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block top %}
+	<h6> * Note ID: {{note.noteid}} * Note Type: {{note.notetype}} * Username: {{user}} * </h6>
+	<h6> ** Number of notes you have reviewed: {{note.num_reviewed}} </h6>
+	<h6 style="color: red;">{{note.reviewStatusText0}}</h6>
+{%endblock %}
+{% block questions %}
+	<form method='POST' action="{{url_for('index', user=user, noteid=noteid)}}">
+		{{form.hidden_tag()}}
+ 
+		<div style = font-size:12.5px; font-weight:bold; margin-left:50px;>
+ <!--           <div id="namestore">
+                Researcher name:<br>
+                <input type="text" id="fname" required>
+                <br>
+                <input type="submit" style="width: 500px" align="middle">
+                       </div>
+            <script>
+                if(typeof(Storage) !== "undefined")
+                {
+                    localStorage.setItem("Name",document.getElementByID("fname"))
+                }
+                else
+                {
+                    //other code
+                }
+            </script>-->
+        <!-- </div> -->
+           <style>
+            #intexttext{
+                font-size:80%;
+            font-family:verdana;
+            background-color:#D8D8D8;
+            color:#000000;
+            padding: 10px 15px;
+            width:80%
+                margin: 10px 0;
+            border:4px solid darkblue;
+            border-radius:4px;
+            }
+               #checkboxes{
+                   float: center;
+                   margin: 0 auto;
+               }
+        </style>     
+			<p>
+                (1) {{form.good.label}}
+                {% for subfield in form.good %}
+                    <tr> <br>
+                        <td>{{ subfield }}</td>
+                        <td>{{ subfield.label }}</td>
+                    </tr>
+                {% endfor %}
+                <br>
+                <span style="color: blue;"> {{note.reviewStatusText1}} </span>
+			<br>
+			</p>  
+            <p>
+                
+                <b> You can only answer question 2 if you answered Yes for question 1. </b> <br>
+                <br>
+                (2) {{form.impt.label}}
+                {% for subfield in form.impt %}
+                    <tr> <br>
+                        <td>{{ subfield }}</td>
+                        <td>{{ subfield.label }}</td>
+                    </tr>
+                {% endfor %}
+                <br>
+                <span style="color: blue;"> {{note.reviewStatusText2}} </span>
+                {% for error in form.impt.errors %}
+                <br>
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            <br>
+            </p>
+			{{form.send}}
+		</div>
+	</form>
+{%endblock %}
+
+{% block content %}
+        <p id="maintext"><font size="2.5"> {{ note.notetext | safe }} </font></p>
+        <!--
+        var java_col_str = json_dat.col_str // json_dat is a JSON data (str data) returned from python into javascript
+        $('#col_str').empty() // clear original content inside the division of this id
+        $('#col_str').append(col_str)
+        -->
+{% endblock %}

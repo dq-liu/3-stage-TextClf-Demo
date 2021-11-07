@@ -1,0 +1,46 @@
+<html>
+    <style>
+        body {
+            float: center;
+            margin: 0 auto;
+            font-family: helvetica;
+            font-size:120%;
+            border:20px lightsteelblue;
+            width: 70%;
+            background-color:#FFFFFF;
+            color: #1E1E8C;
+        }
+        
+    </style>
+    <head>
+        <title>Home Page</title>
+    </head>
+    <body>
+        <div>
+            <p>Thank you for providing valuable input to the machine learning model to help identify notes that you would want to see in preparation for a goals of care conversation.  As a team we have developed three categories of data that might be contained in goals of care-relevant notes.  We recommend you review these categories to help you think about what notes would help prepare you for a goals of care conversation.</p>
+            
+            <b>1. Surrogate Decision Maker</b>
+            <p> Includes notes that name or discuss any individual who might make medical decisions on behalf of the patient if ever he or she is not able or does not have capacity to make medical decisions for him or herself. In addition to legally designated surrogate decision makers and next of kin, notes may include discussion of additional individuals in the patient's life who may impact his or her medical decisions through caregiving or accompanying patients during encounters in the healthcare setting. Also includes notes containing assessment of patient capacity or history of involuntary commitment. </p>
+            
+            <b>2. Goals and Values</b>
+            <p>Includes notes with information related to a patient's personal values and life goals that may be relevant in the setting of serious illness or disease progression. The patient's goals may include maintenance of autonomy and control, relief of suffering and management of symptoms, and general optimization of quality of life from the perspective of the patient, including the enjoyment of particular community events or the desire to be present for a future family or personal milestone. </p>
+
+            <b>3. Care Preferences</b>
+            <p>Includes notes that specifically describe a patient's preferences regarding future medical care, and in particular their desire for or against discrete medical interventions in the setting of serious illness or disease progression. Examples include desire for or against life-sustaining therapies and/or measures (additional rounds of chemotherapy, escalation in care, intubation and/or ventilator dependence), DNAR, and/or hospice care. </p>
+            
+        </div> 
+        <form method="POST" action="{{ url_for('home') }}">
+            {{ form.hidden_tag() }}
+            <div id='text'; align="left"; font-size="250%">
+            <font size=5>
+                <h4>Please select your name:</h4>
+            {{form.names.labels}} {{form.names}}
+            {% for error in form.names.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            {{form.submit}}
+                </font>
+            </div>
+        </form>
+    </body>
+</html>
